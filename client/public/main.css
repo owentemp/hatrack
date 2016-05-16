@@ -5,3 +5,12 @@
 .app {
   text-align: center
 }
+
+.hat {
+  width: 30px
+}
+
+table {
+  margin-left:auto;
+  margin-right:auto;
+}
