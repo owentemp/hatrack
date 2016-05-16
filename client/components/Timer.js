@@ -2,28 +2,28 @@ var m = require('mithril')
 
 
 //this application only has one component: todo
-var todo = {};
+var timer = {};
 
 //for simplicity, we use this component to namespace the model classes
 
 //the Todo class has two properties
-todo.Todo = function(data) {
+timer.Todo = function(data) {
     this.description = m.prop(data.description);
     this.done = m.prop(false);
 };
 
 //the TodoList class is a list of Todo's
-todo.TodoList = Array;
+timer.TodoList = Array;
 
 //the view-model tracks a running list of todos,
 //stores a description for new todos before they are created
 //and takes care of the logic surrounding when adding is permitted
 //and clearing the input after adding a todo to the list
-todo.vm = (function() {
+timer.vm = (function() {
     var vm = {}
     vm.init = function() {
         //a running list of todos
-        vm.list = new todo.TodoList();
+        vm.list = new timer.TodoList();
 
         //a slot to store the name of a new todo before it is created
         vm.description = m.prop("");
@@ -31,14 +31,8 @@ todo.vm = (function() {
         //adds a todo to the list, and clears the description field for user convenience
         vm.add = function() {
             if (vm.description()) {
-                vm.list.push(new todo.Todo({description: vm.description()}));
+                vm.list.push(new timer.Todo({description: vm.description()}));
                 vm.description("");
-            }
-        };
-        vm.session = function() {
-            if (vm.list.length > 0) {
-                var nextHat = vm.list.pop();
-                console.log(nextHat);
             }
         };
     }
@@ -47,18 +41,18 @@ todo.vm = (function() {
 
 //the controller defines what part of the model is relevant for the current page
 //in our case, there's only one view-model that handles everything
-todo.controller = function() {
-    todo.vm.init()
+timer.controller = function() {
+    timer.vm.init()
 }
 
 //here's the view
-todo.view = function() {
+timer.view = function() {
   return m("div", [
     m("img", {class: "hat", src:"/assets/hat.jpg"}),
-    m("input", {onchange: m.withAttr("value", todo.vm.description), value: todo.vm.description()}),
-    m("button", {onclick: todo.vm.add}, "Add"),
+    m("input", {onchange: m.withAttr("value", timer.vm.description), value: timer.vm.description()}),
+    m("button", {onclick: timer.vm.add}, "Add"),
     m("table", [
-      todo.vm.list.map(function(task, index) {
+      timer.vm.list.map(function(task, index) {
         return m("tr", [
           m("td", [
             m("input[type=checkbox]", {onclick: m.withAttr("checked", task.done), checked: task.done()})
@@ -66,10 +60,6 @@ todo.view = function() {
           m("td", {style: {textDecoration: task.done() ? "line-through" : "none"}}, task.description()),
           ])
       })
-      ]),
-    m("hr"),
-    m("div", [
-      m("button", {class:"btn btn-primary", onclick: todo.vm.session}, "Focus"),
       ])
     ]);
 };
@@ -77,8 +67,8 @@ todo.view = function() {
 //initialize the application
 // m.mount(document, {controller: todo.controller, view: todo.view});
 
-exports.controller = todo.controller;
+exports.controller = timer.controller;
 
-exports.view = todo.view;
+exports.view = timer.view;
 
 
