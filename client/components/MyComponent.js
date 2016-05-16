@@ -4,6 +4,6 @@ exports.controller = function (options) {}
 
 exports.view = function (ctrl, options) {
   return m('.my-component', [
-    m('h2', options.title)
+    m('h4', {class: "subtitle"}, options.title)
   ])
 }
