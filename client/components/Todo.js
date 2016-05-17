@@ -36,10 +36,51 @@ todo.vm = (function() {
             }
         };
         vm.session = function() {
-            if (vm.list.length > 0) {
-                var nextHat = vm.list.pop();
-                console.log(nextHat);
+            if (todo.vm.list.length > 0) {
+                hatSession(todo.vm.list);
+                console.log(todo.vm.list);
+            } else {
+              alert("Add some hats to the rack first")
             }
+
+              //run hat session by pulling random activity from hat
+            function hatSession(bucket) {
+
+              var moreHat;
+              console.log(bucket.length);
+              while (bucket.length > 0) {
+                alert('Roll the dice to see which of your "hats" you will wear next.');
+                var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
+                nextHat = bucket[ri].description(); //
+                bucket.splice(ri, 1); // Splice out 1 random element using the ri var
+                var t = 0; //counter to count how many repeated sessions with the hat have occurred
+                console.log(nextHat);
+                alert("Your next activity will be " + nextHat);
+                var timerLength;
+                do {
+                  alert('Roll the dice to see how long your next hat session will be.');
+                  timerLength = (Math.floor( Math.random() * 25) + 1);
+                  alert("You rolled " + timerLength + ", so focus on " + nextHat + " for the next " + timerLength + " minutes. Click OK when done.");
+                  moreHat = prompt('Do you want to wear your ' + nextHat + ' hat for another session? Yes or No?');
+                  if (moreHat === null) {
+                    throw new Error("You chose CANCEL, so the program will end. Come back again soon!");
+                  }
+
+
+                } while (moreHat === 'YES'||
+                     moreHat === 'Y' ||
+                     moreHat === 'yes' ||
+                     moreHat === 'y');
+
+
+              }
+              alert("You've worn all your hats today, congratulations");
+              alert("Your HatRack score today is " + score);
+            }
+
+
+
+
         };
     }
     return vm
@@ -69,7 +110,7 @@ todo.view = function() {
       ]),
     m("hr"),
     m("div", [
-      m("button", {class:"btn btn-primary", onclick: todo.vm.session}, "Focus"),
+      m("button", {class:"btn btn-primary btn-block focus", onclick: todo.vm.session}, "Focus"),
       ])
     ]);
 };
