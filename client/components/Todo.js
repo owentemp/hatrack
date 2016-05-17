@@ -52,6 +52,7 @@ todo.vm = (function() {
 
             alert('Roll the dice to see which of your "hats" you will wear next.');
             var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
+            vm.nextHatStatus = bucket[ri].done;
             vm.nextHat = bucket[ri].description(); //
             bucket.splice(ri, 1); // Splice out 1 random element using the ri var
             var t = 0; //counter to count how many repeated sessions with the hat have occurred
@@ -68,7 +69,7 @@ todo.vm = (function() {
             alert("You rolled " + vm.timerLength + ", so focus on " + hat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
           //   //start timer
           var temp = vm.timerLength * 60;
-          temp=30;
+          // temp=30;
           vm.startTimer(temp);
         };
 
@@ -81,7 +82,6 @@ todo.vm = (function() {
 
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
-
             vm.timerLength = minutes + ":" + seconds;
 
             if (--timer < 0) {
@@ -97,18 +97,18 @@ todo.vm = (function() {
                      vm.moreHat === 'y') {
                 vm.hatSession2(vm.nextHat);
               }
-
-
+              vm.nextHatStatus(true);
             }
             m.endComputation();
           }, 1000);
+
           vm.endTimer = function () {
             clearInterval(intervalID);
             vm.timerLength = "";
           };
         };
 
-                //
+
 
 
 
@@ -135,8 +135,8 @@ todo.controller = function() {
 todo.view = function() {
   return m("div", [
     m("img", {class: "hat", src:"/assets/hat.jpg"}),
-    m("input", {onchange: m.withAttr("value", todo.vm.description), value: todo.vm.description()}),
-    m("button", {onclick: todo.vm.add}, "Add Hat to Rack"),
+    m("input", {class:"add", onchange: m.withAttr("value", todo.vm.description), value: todo.vm.description()}),
+    m("button", {class: "btn btn-default", onclick: todo.vm.add}, "Add Hat to Rack"),
     m("hr"),
     m("table", [
       todo.vm.list.map(function(task, index) {
@@ -150,12 +150,12 @@ todo.view = function() {
       ]),
     m("hr"),
     m("div", [
-      m("button", {class:"btn btn-primary btn-block focus", onclick: todo.vm.session}, "Focus"),
+      m("button", {class:"btn btn-primary btn-block focus", onclick: todo.vm.session}, "Focus Session"),
       ]),
     m("div", {id: "clock"}, [
       m("h1", {class:"minutes", onclick: todo.vm.endTimer}, todo.vm.timerLength),
       ]),
-    m("h3", "Score: ", todo.vm.score )
+    m("h2", {class:"score"},"Score: ", todo.vm.score )
     ]);
 };
 
