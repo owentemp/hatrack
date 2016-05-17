@@ -8,8 +8,8 @@ var todo = {};
 
 //the Todo class has two properties
 todo.Todo = function(data) {
-    this.description = m.prop(data.description);
-    this.done = m.prop(false);
+  this.description = m.prop(data.description);
+  this.done = m.prop(false);
 };
 
 //the TodoList class is a list of Todo's
@@ -20,8 +20,8 @@ todo.TodoList = Array;
 //and takes care of the logic surrounding when adding is permitted
 //and clearing the input after adding a todo to the list
 todo.vm = (function() {
-    var vm = {}
-    vm.init = function() {
+  var vm = {}
+  vm.init = function() {
         //a running list of todos
         vm.list = new todo.TodoList();
 
@@ -30,65 +30,65 @@ todo.vm = (function() {
 
         //adds a todo to the list, and clears the description field for user convenience
         vm.add = function() {
-            if (vm.description()) {
-                vm.list.push(new todo.Todo({description: vm.description()}));
-                vm.description("");
-            }
+          if (vm.description()) {
+            vm.list.push(new todo.Todo({description: vm.description()}));
+            vm.description("");
+          }
         };
         vm.session = function() {
-            if (todo.vm.list.length > 0) {
-                vm.hatSession(todo.vm.list);
-                console.log(todo.vm.list);
-            } else {
-              alert("Add some hats to the rack first")
-            }
+          if (todo.vm.list.length > 0) {
+            vm.hatSession(todo.vm.list);
+            console.log(todo.vm.list);
+          } else {
+            alert("Add some hats to the rack first")
+          }
         };
               //run hat session by pulling random activity from hat
-        vm.hatSession = function (bucket) {
+              vm.hatSession = function (bucket) {
 
-              var moreHat;
-              console.log(bucket.length);
+                var moreHat;
+                console.log(bucket.length);
 
                 alert('Roll the dice to see which of your "hats" you will wear next.');
-                var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
-                nextHat = bucket[ri].description(); //
-                bucket.splice(ri, 1); // Splice out 1 random element using the ri var
-                var t = 0; //counter to count how many repeated sessions with the hat have occurred
-                console.log(nextHat);
-                alert("Your next activity will be " + nextHat);
-                // var timerLength;
-                // do {
-                alert('Roll the dice to see how long your next hat session will be.');
-                vm.timerLength = (Math.floor( Math.random() * 25) + 1);
-                alert("You rolled " + vm.timerLength + ", so focus on " + nextHat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
-                //   //start timer
-                var temp = vm.timerLength * 60;
-
-                vm.startTimer(temp);
+          var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
+          nextHat = bucket[ri].description(); //
+          bucket.splice(ri, 1); // Splice out 1 random element using the ri var
+          var t = 0; //counter to count how many repeated sessions with the hat have occurred
+          console.log(nextHat);
+          alert("Your next activity will be " + nextHat);
+          // var timerLength;
+          // do {
+            alert('Roll the dice to see how long your next hat session will be.');
+            vm.timerLength = (Math.floor( Math.random() * 25) + 1);
+            alert("You rolled " + vm.timerLength + ", so focus on " + nextHat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
+          //   //start timer
+          var temp = vm.timerLength * 60;
+          vm.startTimer(temp);
         };
 
         vm.startTimer = function (duration) {
-                    var timer = duration, minutes, seconds;
-                    var intervalID = setInterval(function () {
-                        m.startComputation()
-                        minutes = parseInt(timer / 60, 10)
-                        seconds = parseInt(timer % 60, 10);
+          var timer = duration, minutes, seconds;
+          var intervalID = setInterval(function () {
+            m.startComputation()
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
 
-                        minutes = minutes < 10 ? "0" + minutes : minutes;
-                        seconds = seconds < 10 ? "0" + seconds : seconds;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                        vm.timerLength = minutes + ":" + seconds;
+            vm.timerLength = minutes + ":" + seconds;
 
-                        if (--timer < 0) {
-                            timer = duration;
-                        }
-                        m.endComputation();
-                    }, 1000);
-                    vm.endTimer = function () {
-                      console.log("end timer fired");
-                      clearInterval(intervalID);
-                    };
-                };
+            if (--timer < 0) {
+              clearInterval(intervalID);
+              vm.timerLength = "";
+            }
+            m.endComputation();
+          }, 1000);
+          vm.endTimer = function () {
+            clearInterval(intervalID);
+            vm.timerLength = "";
+          };
+        };
 
                 //   moreHat = prompt('Do you want to wear your ' + nextHat + ' hat for another session? Yes or No?');
                 //   if (moreHat === null) {
@@ -109,13 +109,13 @@ todo.vm = (function() {
 
 
 
-    return vm
-}())
+            return vm
+          }())
 
 //the controller defines what part of the model is relevant for the current page
 //in our case, there's only one view-model that handles everything
 todo.controller = function() {
-    todo.vm.init()
+  todo.vm.init()
 }
 
 //here's the view
