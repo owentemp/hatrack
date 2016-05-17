@@ -27,6 +27,7 @@ todo.vm = (function() {
 
         //a slot to store the name of a new todo before it is created
         vm.description = m.prop("");
+        vm.score = 0;
 
         //adds a todo to the list, and clears the description field for user convenience
         vm.add = function() {
@@ -43,26 +44,31 @@ todo.vm = (function() {
             alert("Add some hats to the rack first")
           }
         };
-              //run hat session by pulling random activity from hat
-              vm.hatSession = function (bucket) {
+        //run hat session by pulling random activity from hat
+         vm.hatSession = function (bucket) {
 
-                var moreHat;
-                console.log(bucket.length);
+            vm.moreHat;
+             console.log(bucket.length);
 
-                alert('Roll the dice to see which of your "hats" you will wear next.');
-          var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
-          nextHat = bucket[ri].description(); //
-          bucket.splice(ri, 1); // Splice out 1 random element using the ri var
-          var t = 0; //counter to count how many repeated sessions with the hat have occurred
-          console.log(nextHat);
-          alert("Your next activity will be " + nextHat);
+            alert('Roll the dice to see which of your "hats" you will wear next.');
+            var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
+            vm.nextHat = bucket[ri].description(); //
+            bucket.splice(ri, 1); // Splice out 1 random element using the ri var
+            var t = 0; //counter to count how many repeated sessions with the hat have occurred
+            console.log(vm.nextHat);
+            alert("Your next activity will be " + vm.nextHat);
+            vm.hatSession2(vm.nextHat);
+          };
+
+          vm.hatSession2 = function (hat) {
           // var timerLength;
           // do {
             alert('Roll the dice to see how long your next hat session will be.');
             vm.timerLength = (Math.floor( Math.random() * 25) + 1);
-            alert("You rolled " + vm.timerLength + ", so focus on " + nextHat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
+            alert("You rolled " + vm.timerLength + ", so focus on " + hat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
           //   //start timer
           var temp = vm.timerLength * 60;
+          temp=30;
           vm.startTimer(temp);
         };
 
@@ -81,6 +87,18 @@ todo.vm = (function() {
             if (--timer < 0) {
               clearInterval(intervalID);
               vm.timerLength = "";
+              vm.score += 5;
+              vm.moreHat = prompt('Do you want to wear your ' + vm.nextHat + ' hat for another session? Yes or No?');
+              if (vm.moreHat === null) {
+                throw new Error("You chose CANCEL, so the program will end. Come back again soon!");
+              } else if (vm.moreHat === 'YES'||
+                     vm.moreHat === 'Y' ||
+                     vm.moreHat === 'yes' ||
+                     vm.moreHat === 'y') {
+                vm.hatSession2(vm.nextHat);
+              }
+
+
             }
             m.endComputation();
           }, 1000);
@@ -90,16 +108,11 @@ todo.vm = (function() {
           };
         };
 
-                //   moreHat = prompt('Do you want to wear your ' + nextHat + ' hat for another session? Yes or No?');
-                //   if (moreHat === null) {
-                //     throw new Error("You chose CANCEL, so the program will end. Come back again soon!");
-                //   }
+                //
 
 
-                // } while (moreHat === 'YES'||
-                //      moreHat === 'Y' ||
-                //      moreHat === 'yes' ||
-                //      moreHat === 'y');
+
+
 
 
 
@@ -142,6 +155,7 @@ todo.view = function() {
     m("div", {id: "clock"}, [
       m("h1", {class:"minutes", onclick: todo.vm.endTimer}, todo.vm.timerLength),
       ]),
+    m("h3", "Score: ", todo.vm.score )
     ]);
 };
 
