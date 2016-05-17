@@ -39,7 +39,6 @@ todo.vm = (function() {
         vm.session = function() {
           if (todo.vm.list.length > 0) {
             vm.hatSession(todo.vm.list);
-            console.log(todo.vm.list);
           } else {
             alert("Add some hats to the rack first")
           }
@@ -48,7 +47,6 @@ todo.vm = (function() {
          vm.hatSession = function (bucket) {
 
             vm.moreHat;
-             console.log(bucket.length);
 
             alert('Roll the dice to see which of your "hats" you will wear next.');
             var ri = Math.floor(Math.random() * bucket.length);// Random Index position in the array
@@ -56,7 +54,6 @@ todo.vm = (function() {
             vm.nextHat = bucket[ri].description(); //
             bucket.splice(ri, 1); // Splice out 1 random element using the ri var
             var t = 0; //counter to count how many repeated sessions with the hat have occurred
-            console.log(vm.nextHat);
             alert("Your next activity will be " + vm.nextHat);
             vm.hatSession2(vm.nextHat);
           };

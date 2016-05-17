@@ -20,10 +20,9 @@ m.route(document.getElementById('app'), '/', {
 
     view: function (ctrl) {
       return m('.app', [
-        // m('h1', 'HatRack App'),
-        m.component(Login),
         m.component(MyComponent, { title: 'Wear your many hats' }),
-        m.component(Todo)
+        m.component(Todo),
+        m.component(Login)
       ])
     }
   }
