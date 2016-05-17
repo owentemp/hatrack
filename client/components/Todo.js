@@ -37,14 +37,14 @@ todo.vm = (function() {
         };
         vm.session = function() {
             if (todo.vm.list.length > 0) {
-                hatSession(todo.vm.list);
+                vm.hatSession(todo.vm.list);
                 console.log(todo.vm.list);
             } else {
               alert("Add some hats to the rack first")
             }
-
+        };
               //run hat session by pulling random activity from hat
-            function hatSession(bucket) {
+        vm.hatSession = function (bucket) {
 
               var moreHat;
               console.log(bucket.length);
@@ -60,15 +60,16 @@ todo.vm = (function() {
                 // do {
                 alert('Roll the dice to see how long your next hat session will be.');
                 vm.timerLength = (Math.floor( Math.random() * 25) + 1);
-
                 alert("You rolled " + vm.timerLength + ", so focus on " + nextHat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
                 //   //start timer
                 var temp = vm.timerLength * 60;
 
-                startTimer(temp);
-                function startTimer(duration) {
+                vm.startTimer(temp);
+        };
+
+        vm.startTimer = function (duration) {
                     var timer = duration, minutes, seconds;
-                    setInterval(function () {
+                    var intervalID = setInterval(function () {
                         m.startComputation()
                         minutes = parseInt(timer / 60, 10)
                         seconds = parseInt(timer % 60, 10);
@@ -83,7 +84,12 @@ todo.vm = (function() {
                         }
                         m.endComputation();
                     }, 1000);
-                }
+                    vm.endTimer = function () {
+                      console.log("end timer fired");
+                      clearInterval(intervalID);
+                    };
+                };
+
                 //   moreHat = prompt('Do you want to wear your ' + nextHat + ' hat for another session? Yes or No?');
                 //   if (moreHat === null) {
                 //     throw new Error("You chose CANCEL, so the program will end. Come back again soon!");
@@ -101,8 +107,8 @@ todo.vm = (function() {
               // alert("Your HatRack score today is " + score);
             }
 
-        };
-    }
+
+
     return vm
 }())
 
@@ -134,7 +140,7 @@ todo.view = function() {
       m("button", {class:"btn btn-primary btn-block focus", onclick: todo.vm.session}, "Focus"),
       ]),
     m("div", {id: "clock"}, [
-      m("h1", {class:"minutes"}, todo.vm.timerLength),
+      m("h1", {class:"minutes", onclick: todo.vm.endTimer}, todo.vm.timerLength),
       ]),
     ]);
 };
