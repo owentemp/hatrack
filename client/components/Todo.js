@@ -68,6 +68,7 @@ todo.vm = (function() {
 
 
 
+
                 //   moreHat = prompt('Do you want to wear your ' + nextHat + ' hat for another session? Yes or No?');
                 //   if (moreHat === null) {
                 //     throw new Error("You chose CANCEL, so the program will end. Come back again soon!");

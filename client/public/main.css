@@ -18,3 +18,12 @@ table {
 /*.focus {
   margin:10px 10px 10px 10px;
 }*/
+
+#clock {
+  background-color: rgb(252,91,121)
+}
+
+.minutes {
+  font-size: 600%
+}
+
