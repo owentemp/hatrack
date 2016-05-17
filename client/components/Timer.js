@@ -48,7 +48,6 @@ timer.controller = function() {
 //here's the view
 timer.view = function() {
   return m("div", [
-    m("img", {class: "hat", src:"/assets/hat.jpg"}),
     m("input", {onchange: m.withAttr("value", timer.vm.description), value: timer.vm.description()}),
     m("button", {onclick: timer.vm.add}, "Add"),
     m("table", [

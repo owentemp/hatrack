@@ -58,17 +58,32 @@ todo.vm = (function() {
                 alert("Your next activity will be " + nextHat);
                 // var timerLength;
                 // do {
-                   alert('Roll the dice to see how long your next hat session will be.');
-                   vm.timerLength = (Math.floor( Math.random() * 25) + 1);
-                   alert("You rolled " + vm.timerLength + ", so focus on " + nextHat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
+                alert('Roll the dice to see how long your next hat session will be.');
+                vm.timerLength = (Math.floor( Math.random() * 25) + 1);
+
+                alert("You rolled " + vm.timerLength + ", so focus on " + nextHat + " for the next " + vm.timerLength + " minutes. Click OK to start timer.");
                 //   //start timer
+                var temp = vm.timerLength * 60;
 
+                startTimer(temp);
+                function startTimer(duration) {
+                    var timer = duration, minutes, seconds;
+                    setInterval(function () {
+                        m.startComputation()
+                        minutes = parseInt(timer / 60, 10)
+                        seconds = parseInt(timer % 60, 10);
 
+                        minutes = minutes < 10 ? "0" + minutes : minutes;
+                        seconds = seconds < 10 ? "0" + seconds : seconds;
 
+                        vm.timerLength = minutes + ":" + seconds;
 
-
-
-
+                        if (--timer < 0) {
+                            timer = duration;
+                        }
+                        m.endComputation();
+                    }, 1000);
+                }
                 //   moreHat = prompt('Do you want to wear your ' + nextHat + ' hat for another session? Yes or No?');
                 //   if (moreHat === null) {
                 //     throw new Error("You chose CANCEL, so the program will end. Come back again soon!");
@@ -85,9 +100,6 @@ todo.vm = (function() {
               // alert("You've worn all your hats today, congratulations");
               // alert("Your HatRack score today is " + score);
             }
-
-
-
 
         };
     }
