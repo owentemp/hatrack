@@ -84,7 +84,7 @@ todo.vm = (function() {
             if (--timer < 0) {
               clearInterval(intervalID);
               vm.timerLength = "";
-              vm.score += 5;
+              vm.score += 500;
               vm.moreHat = prompt('Do you want to wear your ' + vm.nextHat + ' hat for another session? Yes or No?');
               if (vm.moreHat === null) {
                 throw new Error("You chose CANCEL, so the program will end. Come back again soon!");

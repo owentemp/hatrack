@@ -1,6 +1,7 @@
 #banner {
-  margin: auto 0;
-  max-width: 100%;
+  width:75%;
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 .app {
@@ -17,9 +18,12 @@ table {
   font-size: 120%;
 }
 
-/*.focus {
-  margin:10px 10px 10px 10px;
-}*/
+.focus {
+  width:50%;
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+}
 
 #clock {
   background-color: rgb(252,91,121)
@@ -42,6 +46,10 @@ table {
 
 .score {
   font-family: "Scoreboard"
+}
+
+.navbar-btn {
+  margin: 0px 0px 0px 0px;
 }
 
 
