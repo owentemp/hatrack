@@ -4,7 +4,7 @@
   "description": "A rapid project starter for node and browserify.",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon server/ --ignore client/",
+    "start": "node server/ --ignore client/",
     "test": "./test/run.sh"
   },
   "author": "Gilbert <gilbertbagrza@gmail.com>",
