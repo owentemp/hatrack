@@ -26,7 +26,10 @@ table {
 }
 
 #clock {
-  background-color: rgb(252,91,121)
+  background-color: rgb(252,91,121);
+  width:50%;
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 .minutes {

@@ -22,7 +22,7 @@ m.route(document.getElementById('app'), '/', {
       return m('.app', [
         m.component(MyComponent, { title: 'Wear your many hats' }),
         m.component(Todo),
-        m.component(Login)
+        // m.component(Login)
       ])
     }
   }
