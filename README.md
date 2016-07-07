@@ -1,48 +1,25 @@
 
-# MVP (Solo) Project
+# HatRack App
+#### Wear your many hats.
 
 ### Overview:
 
-You have 36 hours to produce something compelling using the skills you've honed over the past five weeks. 
-
-__Q:__ What are your inputs?
-<br>
-__A:__ 36 hours of (relatively) undivided attention
-
-__Q:__ What is the required output?
-<br>
-__A:__ A compelling product presentation delivered to your classmates.
-
+A productivity app to improve focus and encourage deliberate practice.
 
 ### Getting Started:
 
-To build on your learning of core engineering concepts, we will begin thinking about how to actually manage projects. Engineering management is a deep skill and discipline with lots of history and academic writing. We will focus on just some highlights of content to give a very brief context of how we arrive here.
+For most of us, our life and work requires "wearing multiple hats", that is, there are multiple roles or task categories we need to perform on a daily basis. 
 
-* Use an [Iterative and incremental development process](http://en.wikipedia.org/wiki/Iterative_and_incremental_development) instead of a [Waterfall Process](http://en.wikipedia.org/wiki/Waterfall_model)
+For example, some jobs require: Selling, Preparing Estimates, Providing Technical Support, and Expense Reporting. As another example, some other jobs require: Writing, Shipping, Booking, Reading.
 
-<!--
-*  [Agile](http://en.wikipedia.org/wiki/Agile_software_development) - is a modern eveolution of Iterative and Incremental Development (IID) that further formalizes the IID philosophy with a set of principles and best practices. It also applies Lean Manufacturing process like [Kanban](http://en.wikipedia.org/wiki/Kanban).-->
+Think about the activities that should happen on a daily basis in your life - the "hats" you need to wear on a daily basis - to keep your life going smoothly.
 
-<!--* [Lean Product Process](http://theleanstartup.com/principles) - Takes the essence of Agile Development methodology and applies it more broadly to the development of product and buiness models that support he requirements of the project.
--->
+These "hats" or recurring activities usually end in "-ing", as in Emailing, Designing, etc. or they are project names.
 
+What is the name of 1 hat that you need to wear on a regular basis in your work? Examples: Coding, Writing, Selling. Enter the name of the hat into the text input box and click "Add Hat to Rack."
 
-## Basic Requirements
-- [ ] Fork the [repo](https://github.com/makersquare/2014-07-solo)
-- Complete the README.md template (<30min)
-  - [ ] Pick an idea (implement a technology, build a product, make art, etc).
-  - [ ] Write it down on paper
-  - [ ] Imagine what portion of this could be done in 24 hours.
-  - [ ] Cut the scope in half.
-  - [ ] Cut the above scope in half again.
-  - [ ] Fill in the README.md template document
-- [ ] Use iterative development (go straight to something that demos your idea)
-- [ ] Prepare for pitch @ demo on Tuesday
+What is another activity you need to do on a daily basis? Enter the name of the hat into the text input box and click "Add Hat to Rack."
 
+Add a few more "hats" and then, when you are ready to focus on working on them, click the "Focus Session" button to have one hat drawn at random, and a focus session from 1 to 25 minutes will be chosen for you.
 
-## Extra Credit
-
-- [ ] Storage - if your app persists data, use a tool like Parse or Firebase. 
-- [ ] Use Liberator, then deploy your app so the whole world can see!
-- [ ] If applicable, use an MVC Framework - Make your app production grade with a full-on MVC. 
 
